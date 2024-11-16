@@ -27,6 +27,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            "waypoint_follower_node = my_bot.follow_waypoints:main",
+            "lidar_filter = my_bot.laser_filter:main",
         ],
     },
 )
