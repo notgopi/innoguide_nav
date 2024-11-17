@@ -44,6 +44,13 @@ def generate_launch_description():
                                    '-entity', 'my_robot'],
                         output='screen')
 
+    lf_node =Node(
+        package='my_bot',
+        executable='lidar_filter',
+        name='lidar_filter',
+        output='screen',
+    )
+
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',
@@ -92,7 +99,8 @@ def generate_launch_description():
                     get_package_share_directory('nav2_bringup'),'launch','localization_launch.py'
                 )]), launch_arguments={'use_sim_time': 'true',
                                         'map': my_map_file,
-                                        'params_file': params_file}.items()
+                                        '/scan': '/filtered_scan',
+                                        'params_file': params_file,}.items()
     )
 
     navigate = IncludeLaunchDescription(
@@ -100,6 +108,7 @@ def generate_launch_description():
                     get_package_share_directory('nav2_bringup'),'launch','navigation_launch.py'
                 )]), launch_arguments={'use_sim_time': 'true',
                                         'map': my_map_file,
+                                        '/scan': '/filtered_scan',
                                         'params_file': params_file}.items()
     )
     
@@ -108,6 +117,7 @@ def generate_launch_description():
         rsp,
         gazebo,
         spawn_entity,
+        lf_node,
         rviz_node,
         #robot_localization_node,
         #launch_world,
