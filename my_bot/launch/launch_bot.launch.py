@@ -44,6 +44,12 @@ def generate_launch_description():
                                    '-entity', 'my_robot'],
                         output='screen')
 
+    lidar_launch = IncludeLaunchDescription(
+                PythonLaunchDescriptionSource([os.path.join(
+                    get_package_share_directory('rplidar_ros'),'launch','rplidar_a1_launch.py'
+                )]), launch_arguments={'frame_id':'lidar_link'}.items()
+    )
+
     lf_node =Node(
         package='my_bot',
         executable='lidar_filter',
@@ -100,6 +106,7 @@ def generate_launch_description():
                 )]), launch_arguments={'use_sim_time': 'true',
                                         'map': my_map_file,
                                         '/scan': '/filtered_scan',
+                                        #'/odom': '/odometry/filtered',
                                         'params_file': params_file,}.items()
     )
 
@@ -109,6 +116,7 @@ def generate_launch_description():
                 )]), launch_arguments={'use_sim_time': 'true',
                                         'map': my_map_file,
                                         '/scan': '/filtered_scan',
+                                        #'/odom': '/odometry/filtered',
                                         'params_file': params_file}.items()
     )
     
@@ -117,6 +125,7 @@ def generate_launch_description():
         rsp,
         gazebo,
         spawn_entity,
+        #lidar_launch,
         lf_node,
         rviz_node,
         #robot_localization_node,
