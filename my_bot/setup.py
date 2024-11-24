@@ -29,6 +29,7 @@ setup(
         'console_scripts': [
             "waypoint_follower_node = my_bot.follow_waypoints:main",
             "lidar_filter = my_bot.laser_filter:main",
+            "wheel_odometry_node = my_bot.odom_pub:main",
         ],
     },
 )
