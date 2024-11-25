@@ -1,0 +1,24 @@
+diff_drive_controller:
+  type: diff_drive_controller/DiffDriveController
+  # Wheel radius (meters)
+  wheel_radius: 0.11
+  # Distance between the wheels (meters)
+  wheel_separation: 0.42
+  # Odometry frame
+  odom_frame_id: odom
+  # Base frame (usually base_link)
+  base_frame_id: base_link
+  # Wheel joints
+  left_wheel_names: ["left_wheel_joint"]
+  right_wheel_names: ["right_wheel_joint"]
+  # Velocity input topics
+  left_wheel_joint_velocity_topic: "/encoder/left_wheel_velocity"
+  right_wheel_joint_velocity_topic: "/encoder/right_wheel_velocity"
+  # Publish rate (Hz)
+  publish_rate: 50
+  # Enable odometry TF
+  enable_odom_tf: true
+  # Pose publishing period
+  pose_publish_period: 0.05
+  # Odometry topic
+  odom_topic: "/odom"
