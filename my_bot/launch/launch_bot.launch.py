@@ -29,7 +29,7 @@ def generate_launch_description():
     rsp = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory(package_name),'launch','robosp.launch.py'
-                )]), launch_arguments={'use_sim_time': 'True'}.items()
+                )]), launch_arguments={'use_sim_time': 'False'}.items()
     )
     
     odom_node = Node(
@@ -130,10 +130,10 @@ def generate_launch_description():
     # Launch them all!
     return LaunchDescription([
         rsp,
-        gazebo,
-        spawn_entity,
-        #odom_node,
-        #lidar_launch,
+        #gazebo,
+        #spawn_entity,
+        odom_node,
+        lidar_launch,
         lf_node,
         rviz_node,
         #robot_localization_node,
@@ -141,6 +141,6 @@ def generate_launch_description():
         #map_server_node,
         #amcl_node,
         #lifecycle_manager_node,
-        localize,
-        navigate,
+        #localize,
+        #navigate,
     ])
