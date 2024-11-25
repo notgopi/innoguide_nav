@@ -30,6 +30,8 @@ setup(
             "waypoint_follower_node = my_bot.follow_waypoints:main",
             "lidar_filter = my_bot.laser_filter:main",
             "wheel_odometry_node = my_bot.odom_pub:main",
+            "imu_to_odom_node = my_bot.imu_odom:main",
+            "imu_splitter_node = my_bot.imu_split:main",
         ],
     },
 )

@@ -13,7 +13,7 @@ class LidarFilter(Node):
         self.laser_data = self.create_subscription(LaserScan, "/scan", self.filter_laser, 10)
         self.filter_data = self.create_publisher(LaserScan, "/filtered_scan", 10)
 
-        self.threshold_dist = 0.35
+        self.threshold_dist = 0.64
         self.get_logger().info("Publishing the filtered_scan topic. Use RViz to visualize.")
 
     def filter_laser(self, msg : LaserScan):

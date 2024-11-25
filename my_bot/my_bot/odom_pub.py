@@ -8,7 +8,7 @@ from std_msgs.msg import Int32
 # Robot parameters
 WHEEL_RADIUS = 0.05  # 5 cm
 WHEEL_BASE = 0.3     # 30 cm
-TICKS_PER_REV = 1000 # Encoder ticks per wheel revolution
+TICKS_PER_REV = 7 # Encoder ticks per wheel revolution
 
 class WheelOdometryNode(Node):
     def __init__(self):

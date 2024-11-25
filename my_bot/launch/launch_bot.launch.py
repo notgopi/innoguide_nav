@@ -19,7 +19,7 @@ def generate_launch_description():
     # !!! MAKE SURE YOU SET THE PACKAGE NAME CORRECTLY !!!
 
     package_name='my_bot' #<--- CHANGE ME
-    rviz_config_file = os.path.join(get_package_share_directory(package_name), 'config', 'nav_display.rviz')
+    rviz_config_file = os.path.join(get_package_share_directory(package_name), 'config', 'urdf_config.rviz')
     world_path = os.path.join(get_package_share_directory(package_name), 'world/Inno_world.world')
     my_map_file = os.path.join(get_package_share_directory(package_name), 'maps', 'inno_map.yaml')
     params_file = os.path.join(get_package_share_directory(package_name), 'config', 'nav2_params.yaml')
@@ -29,9 +29,15 @@ def generate_launch_description():
     rsp = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory(package_name),'launch','robosp.launch.py'
-                )]), launch_arguments={'use_sim_time': 'true'}.items()
+                )]), launch_arguments={'use_sim_time': 'True'}.items()
     )
-
+    
+    odom_node = Node(
+        package='odometry',
+        executable='wheel_odometry_node',
+        name='wheel_odometry_node',
+        output='screen',
+    )
     # Include the Gazebo launch file, provided by the gazebo_ros package
     gazebo = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
@@ -47,7 +53,8 @@ def generate_launch_description():
     lidar_launch = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory('rplidar_ros'),'launch','rplidar_a1_launch.py'
-                )]), launch_arguments={'frame_id':'lidar_link'}.items()
+                )]), launch_arguments={'frame_id':'lidar_link',
+                                       'serial_port':'/dev/ttyUSB2'}.items()
     )
 
     lf_node =Node(
@@ -125,6 +132,7 @@ def generate_launch_description():
         rsp,
         gazebo,
         spawn_entity,
+        #odom_node,
         #lidar_launch,
         lf_node,
         rviz_node,
