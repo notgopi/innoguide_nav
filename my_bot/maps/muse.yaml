@@ -1,7 +1,7 @@
-image: muse.jpg
+image: samvid_map.jpg
 mode: trinary
-resolution: 0.05
-origin: [-1,-1, 0.000000]
+resolution: 0.016
+origin: [-5.89285, -4.02286, 0.00000] #0.713336, 0.700822
 negate: 0
 occupied_thresh: 0.65
 free_thresh: 0.196
